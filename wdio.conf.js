@@ -1,5 +1,5 @@
 require('dotenv').config();
-console.log('Loaded Data Plane URL:', process.env.DATA_PLANE_URL);
+//console.log('Loaded Data Plane URL:', process.env.DATA_PLANE_URL);
 const path = require('path');
 const os = require('os');
 const crypto = require('crypto');
@@ -58,16 +58,27 @@ exports.config = {
     capabilities: [{
     browserName: 'chrome',
     'goog:chromeOptions': {
-      args: [
-        `--user-data-dir=${path.join(os.tmpdir(), 'chrome-profile-' + crypto.randomBytes(8).toString('hex'))}`
-      ],
-      prefs: {
-        'profile.password_manager_leak_detection': false,
-        'profile.exit_type': 'Normal',
-        'profile.default_content_setting_values.cookies': 2
-      }
+      args: []
     }
   }],
+  beforeSession: function (config, capabilities, specs) {
+    capabilities['goog:chromeOptions'].args.push(
+      `--user-data-dir=${path.join(os.tmpdir(), 'chrome-profile-' + crypto.randomBytes(8).toString('hex'))}`
+    );
+  },
+//     capabilities: [{
+//     browserName: 'chrome',
+//     'goog:chromeOptions': {
+//       args: [
+//         `--user-data-dir=${path.join(os.tmpdir(), 'chrome-profile-' + crypto.randomBytes(8).toString('hex'))}`
+//       ],
+//       prefs: {
+//         'profile.password_manager_leak_detection': false,
+//         'profile.exit_type': 'Normal',
+//         'profile.default_content_setting_values.cookies': 2
+//       }
+//     }
+//   }],
 
     // capabilities: [{
     //     browserName: 'chrome',
