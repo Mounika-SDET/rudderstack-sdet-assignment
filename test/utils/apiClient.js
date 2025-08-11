@@ -11,7 +11,7 @@ async function sendTrackEvent(dataPlaneUrl,writeKey,eventName = 'ci-test',{ simu
 
   const endpoint = targetUrl.replace(/\/$/, '') + '/v1/track';
   const urlObj = new URL(endpoint);
-  const base = `${urlObj.protocol}//${urlObj.host}`; // host includes port if present
+  const base = `${urlObj.protocol}//${urlObj.host}`;
   const path = urlObj.pathname + (urlObj.search || '');
 
   // Default payload
