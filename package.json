@@ -1,0 +1,37 @@
+{
+  "name": "rudderstack-sdet-assignment",
+  "version": "1.0.0",
+  "description": "Automation framework for Rudderstack SDET assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "wdio run wdio.conf.js",
+    "wdio": "wdio run wdio.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mounika-SDET/rudderstack-sdet-assignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Mounika-SDET/rudderstack-sdet-assignment/issues"
+  },
+  "homepage": "https://github.com/Mounika-SDET/rudderstack-sdet-assignment#readme",
+  "devDependencies": {
+    "@wdio/cli": "^9.18.4",
+    "@wdio/cucumber-framework": "^9.18.0",
+    "@wdio/dot-reporter": "^8.43.0",
+    "@wdio/local-runner": "^9.18.4",
+    "@wdio/spec-reporter": "^9.18.0",
+    "chai": "^5.2.1",
+    "chromedriver": "^139.0.0",
+    "dotenv": "^17.2.1",
+    "supertest": "^7.1.4",
+    "wdio-chromedriver-service": "^8.1.1"
+  },
+  "dependencies": {
+    "axios": "^1.11.0"
+  }
+}
