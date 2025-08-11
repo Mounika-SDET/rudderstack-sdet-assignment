@@ -1,5 +1,8 @@
 require('dotenv').config();
 console.log('Loaded Data Plane URL:', process.env.DATA_PLANE_URL);
+const path = require('path');
+const os = require('os');
+const crypto = require('crypto');
 exports.config = {
     //
     // ====================
@@ -53,14 +56,28 @@ exports.config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome',
-        'goog:chromeOptions': {
-        prefs: {
-            'profile.exit_type': 'Normal',
-            'profile.default_content_setting_values.cookies': 2
-        } 
-       }
-    }],
+    browserName: 'chrome',
+    'goog:chromeOptions': {
+      args: [
+        `--user-data-dir=${path.join(os.tmpdir(), 'chrome-profile-' + crypto.randomBytes(8).toString('hex'))}`
+      ],
+      prefs: {
+        'profile.password_manager_leak_detection': false,
+        'profile.exit_type': 'Normal',
+        'profile.default_content_setting_values.cookies': 2
+      }
+    }
+  }],
+
+    // capabilities: [{
+    //     browserName: 'chrome',
+    //     'goog:chromeOptions': {
+    //     prefs: {
+    //         'profile.exit_type': 'Normal',
+    //         'profile.default_content_setting_values.cookies': 2
+    //     } 
+    //    }
+    // }],
 
     //
     // ===================
