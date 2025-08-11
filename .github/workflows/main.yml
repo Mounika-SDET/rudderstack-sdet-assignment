@@ -1,0 +1,24 @@
+name: Run WDIO Tests Daily
+
+on:
+  schedule:
+    - cron: '0 16 * * *'  # adjust; this runs daily at 16:00 UTC (~10:30 PM IST)
+  workflow_dispatch:
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        env:
+          DEV_EMAIL: ${{ secrets.DEV_EMAIL }}
+          DEV_PASSWORD: ${{ secrets.DEV_PASSWORD }}
+          BASE_URL: https://app.rudderstack.com
+        run: npm run test
